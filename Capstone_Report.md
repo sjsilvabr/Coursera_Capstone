@@ -73,7 +73,7 @@ __Priority List__
 Used to select venues according to their categories, it has been stored in a _dictionay object_ containing venues categories according to the _API Foursquare_, the dictionary keys are CategoryId and dictionary values  are categories names.
 
 <figure>
-    <img src='./images/image_prio_list.png'/>
+    <img src='Images/image_prio_list.png'/>
     <br>
     <em> Fig. 1: Relocator priority list</em>
 </figure>
@@ -83,7 +83,7 @@ __Rental Budget__
 Used to indicate the districts the relocator can afford the monthly rental, it has been stored in _variable_ containg the rental budget in Brazilian Reais per square meter - BRL/m<sup>2</sup>. Enabling some flexibility and opening more options to the relocator, a tolerance range for rental prices has alson been set to +-5%, also stored in _variables_.
         
 <figure>
-    <img src='./images/image_rental_budget.png'/>
+    <img src='Images/image_rental_budget.png'/>
     <br>
     <em> Fig. 2: Relocator rental budget</em>
 </figure>
@@ -100,7 +100,7 @@ According to the official tourism website of the main city São Paulo (www.cidad
 The required data was city districts and/or neighborhoods. The main city of São Paulo is divided in 5 geographical regions, 32 boroughs, 96 districts and hundreds of neighborhoods. The city division, up to the district level, can be found in the official city townhall web site (http://www.capital.sp.gov.br). Its is stored in a _XLSX_ table format into a _HTML_ page (see reference 3).
 
 <figure>
-    <img src='./images/image_table_sp_division.png'/>
+    <img src='Images/image_table_sp_division.png'/>
     <br>
     <em> Fig. 3: São Paulo, regions division, source Prefeitura de São Paulo</em>
 </figure>
@@ -108,7 +108,7 @@ The required data was city districts and/or neighborhoods. The main city of São
 Data has been collected using _Requests_ package and parsed with _BeautifulSoap_ package by _HTML_ parser. Cleaning and organizing data included removal of headers and footers rows, recognize data vs. column alignment, convert values from Brazilian standard format and treat cells with missing data. Due to the cofiguration of original table, for some rows region and borough were missing, they have been filled accordingly. Clean data have been stored in a _Pandas DataFrame_ object.
 
 <figure>
-    <img src='./images/image_df_districts_01.png'/>
+    <img src='Images/image_df_districts_01.png'/>
     <br>
     <em>Fig. 4: Districts dataframe</em>
 </figure>
@@ -122,7 +122,7 @@ A mixed rental prices list per district and neighborhood could be found in a rea
 The websites contain each of them a list mixed with districts and neighborhoods names, it is not the complete list of city neighborhoods, but all the districts are represented. Unfortunately there is a missing relation between districts and neighborhoods, what could not be found, and for this reason missing data occoured, and have been treated accordingly (see reference 4, 5, 6 and 7).
 
 <figure>
-    <img src='./images/image_table_sp_rental_prices.png'/>
+    <img src='Images/image_table_sp_rental_prices.png'/>
     <br>
     <em>Fig. 5: Region Norte mean rental prices (BRL/m<sup>2</sup>), source Blog ZN Imóvel</em>
 </figure>
@@ -130,7 +130,7 @@ The websites contain each of them a list mixed with districts and neighborhoods 
 Data has been collected using _Requests_ package and parsed with _BeautifulSoap_ package by _HTML_ parser. Cleaning and organizing data included removal of headers and footers rows, convert values from Brazilian standard format and treat cells with missing data. Locations when not enough sample were available to have mean rental price were indicated with specific text in colum mean rental price, those observations have been removed as they could not be used. Clean data have been stored in a _Pandas DataFrame_ object.
         
 <figure>
-    <img src='./images/image_df_rental_prices.png'/>
+    <img src='Images/image_df_rental_prices.png'/>
     <br>
     <em>Fig. 6: Rental prices dataframe</em>
 </figure>
@@ -138,7 +138,7 @@ Data has been collected using _Requests_ package and parsed with _BeautifulSoap_
 When compared to the _Districts dataframe_ missing values were also found, in this case the missing values were filled with the region mean rental price. Complete data have been added to _Districts dataframe_.
 
 <figure>
-    <img src='./images/image_df_districts_02.png'/>
+    <img src='Images/image_df_districts_02.png'/>
     <br>
     <em>Fig. 7: Districts dataframe with mean rental prices (BRL/m<sup>2</sup>)</em>
 </figure>
@@ -148,7 +148,7 @@ When compared to the _Districts dataframe_ missing values were also found, in th
 Required data was districts coodinates (latitude and longitude) to allow venues search using _API Foursquare_. Geolocation data has been acquired with _Geopy_ package, the geolocator has been called using districs and boroughs names, followed by the expression _"São Paulo, BR_". When the call returned _None_, a second call has been done removing boroughs name. Cleaning and organizing data included select only relevant information and assign them to the respective district. Clean data have been stored in a _Pandas DataFrame_ object.
 
 <figure>
-    <img src='./images/image_df_coord.png'/>
+    <img src='Images/image_df_coord.png'/>
     <br>
     <em>Fig. 8: Coordinates dataframe</em>
 </figure>
@@ -156,7 +156,7 @@ Required data was districts coodinates (latitude and longitude) to allow venues 
 Coodinates data have also been added to _Districts dataframe_.
 
 <figure>
-    <img src='./images/image_df_districts_02.png'/>
+    <img src='Images/image_df_districts_02.png'/>
     <br>
     <em>Fig. 9: Districts dataframe with coodinates</em>
 </figure>
@@ -166,7 +166,7 @@ Coodinates data have also been added to _Districts dataframe_.
 Required data was venues category per district. A collection of venues and their categories has been created with _API Foursquare_, data has been collect using _Requests_ package and parsed with _Json_ package. Cleaning and organizing data included select only venues relevant information, assign venues to the respective district, and removal of not required venues categories, even when requesting the venues search with defined categories (_Priority List_), _API Foursquare_ returned sub-categories in its response, when they do exist. Clean data have been stored in a _Pandas DataFrame_ object.
 
 <figure>
-    <img src='./images/image_df_venues.png'/>
+    <img src='Images/image_df_venues.png'/>
     <br>
     <em>Fig. 10: Venues dataframe</em>
 </figure>
@@ -176,7 +176,7 @@ Data has been grouped by district and counted by venue category in pivot table f
 When compared, the the summary of venues per district and _Districts dataframe_, a few missing districts were also found, in this case none of the required venues categories were returned in response by the API. Missing districts were added to the data having _0_ (zero) for all venues categories, allowing them to be ranked later. Clean data have been stored in a _Pandas DataFrame_ object.
 
 <figure>
-    <img src='./images/image_df_venues_count_01.png'/>
+    <img src='Images/image_df_venues_count_01.png'/>
     <br>
     <em>Fig. 11: Venues count dataframe</em>
 </figure>
@@ -190,7 +190,7 @@ In case of relocation, it is important to have an overview of the target locatio
 Differenciation of regions with colors has been done creating a color table based on region information from _Districts dataframe_. Region color data has also been added to _Districts dataframe_.
 
 <figure>
-    <img src='./images/image_df_districts_04.png'/>
+    <img src='Images/image_df_districts_04.png'/>
     <br>
     <em>Fig. 12: Districts dataframe with regions colors</em>
 </figure>
@@ -198,7 +198,7 @@ Differenciation of regions with colors has been done creating a color table base
 _Folium_ map of São Paulo showing districts with region specific color.
 
 <figure>
-    <img src='./images/image_map_saopaulo_01.png'/>
+    <img src='Images/image_map_saopaulo_01.png'/>
     <br>
     <em>Fig. 13: Map of São Paulo</em>
 </figure>
@@ -208,7 +208,7 @@ _Folium_ map of São Paulo showing districts with region specific color.
 The first analysis has been done on how many districts each region counts, achieved with a bar plot created with _Matplolib_ package. Regions _Leste_ and _Sul_ concentrate a huge portion of districts.
 
 <figure>
-    <img src='./images/image_plot_districts_regions_col.png'/>
+    <img src='Images/image_plot_districts_regions_col.png'/>
     <br>
     <em>Fig. 14: Districts distribution across region</em>
 </figure>
@@ -216,7 +216,7 @@ The first analysis has been done on how many districts each region counts, achie
 Basic statistics have also been done in the dataframe, using _Pandas_ package.
 
 <figure>
-    <img src='./images/image_df_districts_statistics.png'/>
+    <img src='Images/image_df_districts_statistics.png'/>
     <br>
     <em>Fig. 15: Statistics of Districts dataframe</em>
 </figure>
@@ -228,7 +228,7 @@ There is also huge variation in districts land area, ranging from __2.19 km<sup>
 A histogram has been created with _Matplotlib_ package to visualize the mean rental prices distribution and how the relocator budget is positioned in São Paulo market.
 
 <figure>
-    <img src='./images/image_plot_rental_prices_hist_01.png'/>
+    <img src='Images/image_plot_rental_prices_hist_01.png'/>
     <br>
     <em>Fig. 16: Histogram of mean rental prices (BRL/m<sup>2</sup>)</em>
 </figure>
@@ -236,13 +236,13 @@ A histogram has been created with _Matplotlib_ package to visualize the mean ren
 The relocator budget is posioned on the central area of the mean rental prices histogram, unfortunately not very expressive area, but the tolerance range covers a better area of it. For better perspective, a mean rental prices histogram has been created for each region.
 
 <figure>
-    <img src='./images/image_plot_rental_prices_hist_02_centro.png'/>
-    <img src='./images/image_plot_rental_prices_hist_02_leste.png'/>
+    <img src='Images/image_plot_rental_prices_hist_02_centro.png'/>
+    <img src='Images/image_plot_rental_prices_hist_02_leste.png'/>
     <br>
-    <img src='./images/image_plot_rental_prices_hist_02_norte.png'/>
-    <img src='./images/image_plot_rental_prices_hist_02_oeste.png'/>
+    <img src='Images/image_plot_rental_prices_hist_02_norte.png'/>
+    <img src='Images/image_plot_rental_prices_hist_02_oeste.png'/>
     <br>
-    <img src='./images/image_plot_rental_prices_hist_02_sul.png'/>
+    <img src='Images/image_plot_rental_prices_hist_02_sul.png'/>
     <br>
     <em>Fig. 17: Regions histogram of mean rental prices (BRL/m<sup>2</sup>)</em>
 </figure>
@@ -256,7 +256,7 @@ The rank has been based on groups of districts, created on their similarities. T
 The required data to run the clustering process have been combined in one dataframe, __Priority List__ items each district contains, what is available in _Venues Count dataframe_, and __mean rental price__ per district, what is available in _Districts dataframe_. Both dataframes have been mergeded into a new dataframe using _Pandas_ package.
 
 <figure>
-    <img src='./images/image_df_clusters_01.png'/>
+    <img src='Images/image_df_clusters_01.png'/>
     <br>
     <em>Fig. 18: Clusters dataframe</em>
 </figure>
@@ -282,7 +282,7 @@ Data have also been prepared for clustering as following:
 Additionally the column _mean_price_sqm_ has been renamed to _rental_group_.
 
 <figure>
-    <img src='./images/image_df_clusters_02.png'/>
+    <img src='Images/image_df_clusters_02.png'/>
     <br>
     <em>Fig. 19: Clusters dataframe after data preparation</em>
 </figure>
@@ -290,7 +290,7 @@ Additionally the column _mean_price_sqm_ has been renamed to _rental_group_.
 Having data prepared, _DBSCAN_ from _SciKit-Learn_ package has been modeled with minimum samples equals three (_min_sample = 3_), to have at least three districts per cluster, and maximum distance between smaple equals to 0.5 ($\epsilon$ _= 0.5_), to have high level of similarity within cluster elements. Eight clusters and one outliers group have been defined.
 
 <figure>
-    <img src='./images/image_ml_dbscan.png'/>
+    <img src='Images/image_ml_dbscan.png'/>
     <br>
     <em>Fig. 20: DBSCAN results</em>
 </figure>
@@ -302,7 +302,7 @@ Having data prepared, _DBSCAN_ from _SciKit-Learn_ package has been modeled with
 Initially the size of each cluster has been checked, first the defined clusters have been attached to _Clusters dataframe_ and then it has been grouped by _cluster_label_ to count the observations.
 
 <figure>
-    <img src='./images/image_df_clusters_03.png'/>
+    <img src='Images/image_df_clusters_03.png'/>
     <br>
     <em>Fig. 21: Clusters size</em>
 </figure>
@@ -312,7 +312,7 @@ _DBSCAN_ has defined clusters with many different sizes, and outliers group _-1_
 As the features have been converted to _0 / 1_ for venues categories and _0 / 1 / 2_ for rental group, the clusters characteristcs could be easily analysed calculating the mean of each colum per cluster. It has been grouped again by _cluster_label_, but this time the _mean_ has been calculated.
 
 <figure>
-    <img src='./images/image_df_clusters_04.png'/>
+    <img src='Images/image_df_clusters_04.png'/>
     <br>
     <em>Fig. 22: Clusters characteristcs by mean</em>
 </figure>
@@ -368,7 +368,7 @@ Goal is to find districts containing the five categories in __Priority List__ an
 Clusters definition have been attached to _Venues Count dataframe_ to allow selecting details about districts by cluster.
 
 <figure>
-    <img src='./images/image_df_venues_count_02.png'/>
+    <img src='Images/image_df_venues_count_02.png'/>
     <br>
     <em>Fig. 23: Cluster 8, districts details</em>
 </figure>
@@ -378,7 +378,7 @@ Clusters definition have been attached to _Venues Count dataframe_ to allow sele
 A map of São Paulo with selected districts infopoints provides a better visualization.
 
 <figure>
-    <img src='./images/image_map_saopaulo_02.png'/>
+    <img src='Images/image_map_saopaulo_02.png'/>
     <br>
     <em>Fig. 24: Map of São Paulo with selected districts</em>
 </figure>
