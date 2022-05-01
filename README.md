@@ -1,7 +1,15 @@
 # IBM Applied Data Science Capstone on Coursera
 This repository was created for the IBM Applied Data Science Capstone on Coursera, as required for Peer-graded assigments.
 
-Repository content list:
+### Capstone Project Proposal
+
+In our globalised world it is quite common people moving around the take good opportunities, what could be a better position in their companies, new job offer, chance to learn from different cultures or improvements in their quality life.
+
+People who has already been in the situation of relocating to a unknown place, some times abroad, may have experienced the confusion and doubts to choose a place to live, near to work place or school? Near city downtown or periphery? Decisions like this normally are also not comming alone, there are lots of stressing tasks to perform, all together.
+
+My proposal for this project is to provide support to relocators, or relocation service providers, with the task of choosing a place to live. Using the relocator profile, e.g. family components and life style, and a target geographic location, e.g. new work place, a rank of different places will be provided to the relocator, giving some directions to support during the evaluation process of choosing a place to live.
+
+### Repository content
 
 - __README.md__
 
